@@ -1,9 +1,9 @@
 export default {
-    /*'POST /api/login': {
+    'POST /api/login': {
         username: 'admin',
         name:'aaa',
         phone:'1234'
-    },*/
+    },
     // 'GET /api/list': function (req, res) {
     //     let query = req.query || {};
     //     return res.json({
