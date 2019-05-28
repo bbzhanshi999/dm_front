@@ -9,7 +9,12 @@ export default new Vuex.Store({
       username: '',
       id: '',
       name:'',
-      phone:''
+      phone:'',
+      department:{
+        id:'',
+        departCode:'',
+        departName:''
+      }
     }
   },
   getters:{
@@ -18,8 +23,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    update (state, loginInfo) {
-      state.user=loginInfo
+    updatePrincipal (state, loginInfo) {
+      state.user = loginInfo
     }
   },
   actions: {
