@@ -9,7 +9,6 @@
         name: "Index",
         computed:{
             username () {
-                debugger
                 return this.$store.state.user.username;
             }
         }
