@@ -1,9 +1,9 @@
 export default {
-    'POST /api/login': {
+    /*'POST /api/login': {
         username: 'admin',
         name: 'aaa',
         phone: '1234'
-    },
+    },*/
     'POST /api/department/find': [
         {
             id: 1,
@@ -25,7 +25,7 @@ export default {
             username:req.body.username
         })
     },
-    'POST /api/employee/find':function (req,res) {
+   /* 'POST /api/employee/find':function (req,res) {
         let allData = [{
             id: '1',
             username: 'zhangsan',
@@ -60,12 +60,11 @@ export default {
                 departCode: 'yf'
             }
         }];
-        if(req.body.username){
-            console.log(req.body.username)
-            return res.json(allData.filter(item=>item.username===req.body.username))
+        if(req.query.username){
+            return res.json(allData.filter(item=>item.username===req.query.username))
         }
         return res.json(allData)
-    }
+    }*/
     // 'GET /api/list': function (req, res) {
     //     let query = req.query || {};
     //     return res.json({

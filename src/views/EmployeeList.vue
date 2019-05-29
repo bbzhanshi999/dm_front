@@ -2,19 +2,22 @@
     <div style="padding: 10px">
         <el-row class="header">
             <el-col :span="3" style="padding-left: 10px">
-                <el-input v-model="query" placeholder="用户名" size="mini"></el-input>
+                <!--<el-input v-model="query" placeholder="用户名" size="mini"></el-input>-->
+                <el-input  v-model="query" placeholder="请输入用户名" size="mini">
+                    <template slot="prepend"><i class="fa fa-user"></i> </template>
+                </el-input>
             </el-col>
             <el-col :span="5">
-                <el-button @click="getData" size="mini">查询</el-button>
+                <el-button @click="search" size="mini">查询</el-button>
                 <el-button type="primary" @click="showUpdate" size="mini">修改</el-button>
-                <el-button type="warning" size="mini"s>删除</el-button>
+                <el-button type="warning" size="mini" s>删除</el-button>
             </el-col>
         </el-row>
         <el-row class="main">
             <el-table style="width: 100%"
                       :data="employees"
                       highlight-current-row
-                      @current-change="handleCurrentChange"
+                      @current-change="handleRowChange"
             >
                 <el-table-column prop="username" label="用户名"></el-table-column>
                 <el-table-column prop="name" label="姓名"></el-table-column>
@@ -22,7 +25,16 @@
                 <el-table-column prop="department.departName" label="部门"></el-table-column>
             </el-table>
         </el-row>
-        <el-dialog title="编辑职员信息" :visible.sync="showEditDialog" >
+        <el-row>
+            <el-pagination
+                    @current-change="handleCurrentChange"
+                    :current-page.sync="pageInfo.pageNum"
+                    :page-size="pageInfo.pageSize"
+                    layout="total, prev, pager, next, jumper"
+                    :total="pageInfo.total"
+            ></el-pagination>
+        </el-row>
+        <el-dialog title="编辑职员信息" :visible.sync="showEditDialog">
             <el-form :model="selectedRow" size="mini" label-width="80px">
                 <input type="hidden" name="id" :value="selectedRow.id"/>
                 <el-form-item label="用户名">
@@ -78,11 +90,16 @@
                         departName: '',
                         departCode: ''
                     }
+                },
+                pageInfo: {
+                    total:0,
+                    pageNum: 1,
+                    pageSize: 10
                 }
             }
         },
         methods: {
-            handleCurrentChange(val) {
+            handleRowChange(val) {
                 this.selectedRow = val;
             },
             showUpdate() {
@@ -124,15 +141,32 @@
                 })
             },
             getData() {
-                this.axios.post("/api/employee/find", {username: this.query}).then(res => {
-                    this.employees = res.data
+                this.axios.post("/api/employee/find", null, {
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    params: {
+                        username: this.query,
+                        pageNum: this.pageInfo.pageNum,
+                        pageSize: this.pageInfo.pageSize
+                    }
+                }).then(res => {
+                    this.employees = res.data.list;
+                    this.pageInfo.total = res.data.total;
+                    this.pageInfo.pageSize = res.data.pageSize;
+                    this.pageInfo.pageNum = res.data.pageNum;
                 }).catch(err => {
                     console.log(err)
                 })
+            },
+            handleCurrentChange() {
+                this.getData()
+            },
+            search(){
+                this.pageInfo.pageNum = 1;
+                this.getData();
             }
         },
         created() {
-            this.getDepart()
+            this.getDepart();
             this.getData()
         }
     }
