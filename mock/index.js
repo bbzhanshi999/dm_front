@@ -1,9 +1,71 @@
 export default {
     'POST /api/login': {
         username: 'admin',
-        name:'aaa',
-        phone:'1234'
+        name: 'aaa',
+        phone: '1234'
     },
+    'POST /api/department/find': [
+        {
+            id: 1,
+            departName: '药房',
+            departCode: 'yf'
+        }, {
+            id: 2,
+            departName: '仓库',
+            departCode: 'ck'
+        }, {
+            id: 3,
+            departName: '财务科',
+            departCode: 'cwk'
+        }
+    ],
+    'POST /api/employee/save': function (req, res) {
+        return res.json({
+            status: 'success',
+            username:req.body.username
+        })
+    },
+    'POST /api/employee/find':function (req,res) {
+        let allData = [{
+            id: '1',
+            username: 'zhangsan',
+            password: '1234',
+            phone: '4444',
+            name: '张三',
+            department: {
+                id: 1,
+                departName: '药房',
+                departCode: 'yf'
+            }
+        }, {
+            id: '2',
+            username: 'lisi',
+            password: '1234',
+            phone: '5678',
+            name: '李四',
+            department: {
+                id: 2,
+                departName: '仓库',
+                departCode: 'ck'
+            }
+        }, {
+            id: '3',
+            username: 'wangwu',
+            password: '1234',
+            phone: '98989',
+            name: '王五',
+            department: {
+                id: 1,
+                departName: '药房',
+                departCode: 'yf'
+            }
+        }];
+        if(req.body.username){
+            console.log(req.body.username)
+            return res.json(allData.filter(item=>item.username===req.body.username))
+        }
+        return res.json(allData)
+    }
     // 'GET /api/list': function (req, res) {
     //     let query = req.query || {};
     //     return res.json({
