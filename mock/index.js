@@ -3,7 +3,7 @@ export default {
         username: 'admin',
         name: 'aaa',
         phone: '1234'
-    },*/
+    },
     'POST /api/department/find': [
         {
             id: 1,
@@ -18,14 +18,14 @@ export default {
             departName: '财务科',
             departCode: 'cwk'
         }
-    ],
-    'POST /api/employee/save': function (req, res) {
+    ],*/
+   /* 'POST /api/employee/save': function (req, res) {
         return res.json({
             status: 'success',
             username:req.body.username
         })
-    },
-   /* 'POST /api/employee/find':function (req,res) {
+    },*/
+    /*'POST /api/employee/find':function (req,res) {
         let allData = [{
             id: '1',
             username: 'zhangsan',

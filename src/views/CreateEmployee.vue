@@ -22,7 +22,7 @@
                         <el-input v-model="employee.phone"></el-input>
                     </el-form-item>
                     <el-form-item label="部门" style="text-align: left">
-                        <el-select v-model="employee.departId" placeholder="请选择">
+                        <el-select v-model="employee.department.id" placeholder="请选择">
                             <el-option
                                     v-for="depart in departments"
                                     :key="depart.id"
@@ -54,7 +54,11 @@
                     password: '',
                     phone: '',
                     name: '',
-                    departId: ''
+                    department:{
+                        id:'',
+                        departCode:'',
+                        departName:''
+                    }
                 },
                 departments:[]
             }
@@ -82,7 +86,11 @@
                     password: '',
                     phone: '',
                     name: '',
-                    departId: ''
+                    department:{
+                        id:'',
+                        departCode:'',
+                        departName:''
+                    }
                 }
             }
         },
