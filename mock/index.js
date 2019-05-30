@@ -1,5 +1,5 @@
 export default {
-    /*'POST /api/login': {
+    'POST /api/login': {
         username: 'admin',
         name: 'aaa',
         phone: '1234'
@@ -18,7 +18,7 @@ export default {
             departName: '财务科',
             departCode: 'cwk'
         }
-    ],*/
+    ],
    /* 'POST /api/employee/save': function (req, res) {
         return res.json({
             status: 'success',

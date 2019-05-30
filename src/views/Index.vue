@@ -47,15 +47,17 @@
         <el-main>
             <div class="main-title">
                 <el-button type="danger" title="退出登录" @click="logoutShow"
-                           round size="mini" style="float: right;position: absolute;right: 15px;top:15px">退出
+                           round size="mini" style="float: right;position: fixed;right: 15px;top:15px">退出
                 </el-button>
             </div>
+            <div class="main-content">
             <transition appear
                         appear-active-class="animated fadeInRightBig"
                         name="custom-classes-transition" enter-active-class="animated  fadeInRightBig"
                         mode="out-in">
                 <router-view></router-view>
             </transition>
+            </div>
         </el-main>
     </el-container>
 </template>
@@ -129,5 +131,9 @@
         background-color: #0CA578;
         width: 100%;
         box-shadow: grey 5px 5px 5px 2px;
+        position: fixed;
+    }
+    .main-content{
+        margin-top: 60px;
     }
 </style>
