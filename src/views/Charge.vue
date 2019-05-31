@@ -93,7 +93,8 @@
         name: "Charge",
         data() {
             return {
-                query: 12
+                query: 12,
+                drugList:[]
             }
         }
     }
